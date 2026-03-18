@@ -4,6 +4,9 @@
 <title>Aisha 💖</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+<!-- Telegram WebApp -->
+<script src="https://telegram.org/js/telegram-web-app.js"></script>
+
 <style>
 body {
   font-family: Arial;
@@ -27,44 +30,16 @@ p { opacity: 0.9; }
 }
 
 /* Buttons */
-.chat {
-  background: linear-gradient(45deg,#ff4d8d,#7a5cff);
-  color: white;
-}
+.chat { background: linear-gradient(45deg,#ff4d8d,#7a5cff); color: white; }
+.about { background: #ffffff; color: black; }
+.coin { background: #ffd180; color: black; }
+.shop { background: #ffe082; color: black; }
+.support { background: #eeeeee; color: black; }
 
-.about {
-  background: #ffffff;
-  color: black;
-}
+.upi { background: #4caf50; color: white; }
+.paypal { background: #0070ba; color: white; }
 
-.coin {
-  background: #ffd180;
-  color: black;
-}
-
-.shop {
-  background: #ffe082;
-  color: black;
-}
-
-.support {
-  background: #eeeeee;
-  color: black;
-}
-
-.upi {
-  background: #4caf50;
-  color: white;
-}
-
-.paypal {
-  background: #0070ba;
-  color: white;
-}
-
-.section {
-  margin-top: 25px;
-}
+.section { margin-top: 25px; }
 </style>
 </head>
 
@@ -73,26 +48,64 @@ p { opacity: 0.9; }
 <h1>Aisha 💖</h1>
 <p>I’m always here to chat 😊</p>
 
-<!-- MAIN BUTTONS -->
-<a href="#" class="btn chat">💬 Chat with Me</a>
-<a href="#" class="btn about">👤 About Aisha</a>
+<!-- MAIN -->
+<a href="https://t.me/Aishaaaibot" class="btn chat">💬 Chat with Me</a>
+
+<a href="#" onclick="showAbout()" class="btn about">👤 About Aisha</a>
+
 <a href="#" class="btn coin">🪙 Aisha Coins: 100</a>
+
 <a href="#" class="btn shop">🛒 Shop Aisha AI</a>
+
 <a href="#" class="btn support">📞 Support</a>
 
 <!-- PAYMENT -->
 <div class="section">
 <h2>💰 Buy Coins</h2>
 
-<a href="upi://pay?pa=ambrishtiwari@fam&pn=AishaAI&am=90" class="btn upi">
-💚 Pay ₹90 with UPI
+<a href="#" onclick="payUPI()" class="btn upi">
+💚 Pay ₹100 with UPI
 </a>
 
-<a href="https://paypal.me/AmbrishTiwari223/1" class="btn paypal">
+<a href="#" onclick="payPayPal()" class="btn paypal">
 💙 Pay with PayPal
 </a>
 
 </div>
+
+<!-- SCRIPT -->
+<script>
+
+// About popup
+function showAbout() {
+  Telegram.WebApp.showAlert(
+    "💖 Aisha 💖\n\n" +
+    "Hey! I am Aisha, your friend 😊\n\n" +
+    "✨ Features:\n" +
+    "💬 Smart chatting\n" +
+    "🎵 Fun & entertainment\n" +
+    "🪙 Coins system\n" +
+    "🛒 Shop system\n" +
+    "📞 Support available\n\n" +
+    "Always here for you ❤️"
+  );
+}
+
+// ✅ FamPay UPI ₹100 (with fallback)
+function payUPI() {
+  try {
+    Telegram.WebApp.openLink("upi://pay?pa=ambrishtiwari@fam&pn=AishaAI&am=100");
+  } catch (e) {
+    Telegram.WebApp.openLink("https://paytm.com/pay?pa=ambrishtiwari@fam&pn=AishaAI&am=100");
+  }
+}
+
+// PayPal
+function payPayPal() {
+  Telegram.WebApp.openLink("https://paypal.me/AmbrishTiwari223/1");
+}
+
+</script>
 
 </body>
 </html>
